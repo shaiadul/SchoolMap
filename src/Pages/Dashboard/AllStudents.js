@@ -10,10 +10,11 @@ import refresh from "../../images/refresh-svgrepo-com.svg"
 const AllStudents = () => {
 
     // get value
-    const [students, setStudents] = useState([])
-    const [value, setValue] = useState(" ")
+    const [students, setStudents] = useState([]);
+    const [value, setValue] = useState(" ");
+    const [sortValue, setSortValue] = useState(" ");
 
-    const sortOption = ["name", "email", "phone", "status", "roll"]
+    const sortOptions = ["name", "phone", "status", "roll","group"]
     // get students data
     useEffect(() => {
         loadStudentData();
@@ -33,13 +34,27 @@ const AllStudents = () => {
             setValue("");
         }).catch((err) => console.log(err))
     }
+    // handleSort
+    const handleSort = async (e) => {
+        let value = e.target.value;
+        setSortValue(value);
+        return await axios.get(`http://localhost:5000/user?_sort=${value}&_order=asc`).then((res) => {
+            setStudents(res.data);
+        }).catch((err) => console.log(err))
+    }
+    // handleFilter
+    const handleFilter = async (value) => {
+        return await axios.get(`http://localhost:5000/user?status=${value}`).then((res) => {
+            setStudents(res.data);
+        }).catch((err) => console.log(err))
+    }
 
     return (
         <div className='px-2 pb-40 bg-gray-300'>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
 
-                {/* form for search by student name */}
+                {/* form for search by student name start*/}
                 <form onSubmit={handleSearch} className="flex p-4">
                     <div class="relative mt-1">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -66,8 +81,10 @@ const AllStudents = () => {
                     </div>
 
                 </form>
+                {/* form for search by student name end*/}
 
 
+                {/* show all data in the table start*/}
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr className='text-center'>
@@ -103,8 +120,37 @@ const AllStudents = () => {
                             )}
                     </tbody>
                 </table>
-                {/* dropdown */}
-                
+                {/* show all data in the table end*/}  
+
+                {/* pagination start */}
+
+                {/* pagination end */}
+
+                {/* dropdown and filter section start*/}
+                <section className='my-11 grid grid-cols-2'>
+                    {/* short part */}
+                    <div>
+                        <h4 className='text-primary font-extrabold font-serif text-xl'>Sort By:</h4>
+                        <select
+                            className='w-46 h-10 bg-gray-900 border-0 rounded-lg font-extrabold font-serif text-lg text-gray-400'
+                            onChange={handleSort}
+                            value={sortValue}>
+                            <option className='bt-dark' value="">Please Select One</option>
+                            {
+                                sortOptions.map((item, index) => (
+                                    <option value={item} key={index}>{item}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    {/* filter Part */}
+                    <div>
+                    <h4 className='text-primary font-extrabold font-serif text-xl'>Filter By Status:</h4>
+                    <button onClick={() => handleFilter("active")} class="btn btn-sm bg-black font-serif font-bold ">Active</button>
+                    <button onClick={() => handleFilter("Inactive")} class="btn btn-sm bg-black font-serif font-bold ml-2">Inactive</button>
+                    </div>
+                </section>
+                {/* dropdown and filter section end*/}
             </div>
 
         </div>
