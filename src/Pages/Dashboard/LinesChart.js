@@ -49,9 +49,9 @@ const LinesChart = () => {
             <p className='text-center font-extrabold text-green-400 text-2xl my-6 uppercase'>Annually revenue Analysis</p>
             <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-center mx-auto'>
                 {/* this is chart no 01 */}
-                <div className='mt-10 text-center mx-auto w-auto'>
+                <div className='mt-10 text-center mx-auto w-full'>
                 
-                    <LineChart className='line-chart' width={380} height={350} data={data}>
+                    <LineChart className='line-chart' width={370} height={350} data={data}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month" />
                         <YAxis />
@@ -63,7 +63,7 @@ const LinesChart = () => {
                 </div>
                 {/* this SchoolMap Map */}
                 <div className='mt-10 text-center mx-auto w-auto'>
-                    <img src={map} alt="" />
+                    <img className='w-full mx-auto' src={map} alt="" />
                 </div>
             </div>
         </div>

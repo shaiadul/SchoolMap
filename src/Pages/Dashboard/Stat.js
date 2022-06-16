@@ -15,7 +15,7 @@ const Stat = () => {
                         <img src={svg1} alt="" />
                     </div>
                     <div class="stat-title">Total Activities</div>
-                    <div class="stat-value text-primary"><CountUp end={90} />% +</div>
+                    <div class="stat-value text-primary"><CountUp end={90} />% </div>
                     <div class="stat-desc">46% more than last month</div>
                 </div>
                 {/* sault no 02 */}

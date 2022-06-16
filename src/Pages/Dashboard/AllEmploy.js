@@ -69,7 +69,7 @@ const AllStudents = () => {
                                 onChange={(e) => setValue(e.target.value)}
                                 id="table-search"
                                 class="bg-gray-50  border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-0"
-                                placeholder="Search By Student Name" />
+                                placeholder="Search By Employ Name" />
                             <button
                                 type='submit'
                                 className='btn btn-dark rounded-none border-0 rounded-r-lg'>
@@ -127,7 +127,7 @@ const AllStudents = () => {
 
 
                 {/* dropdown and filter section start*/}
-                <section className='my-11 grid grid-cols-2 justify-center'>
+                <section className='my-11 grid lg:grid-cols-2 justify-center align-middle gap-4'>
                     {/* short part */}
                     <div>
                         <h4 className='text-primary font-extrabold font-serif text-xl'>Sort By:</h4>
@@ -146,9 +146,9 @@ const AllStudents = () => {
                     {/* filter Part */}
                     <div className=''>
                         <h4 className='text-primary font-extrabold font-serif text-xl'>Filter By Status:</h4>
-                        <div className='flex'>
-                        <button onClick={() => handleFilter("active")} class="btn btn-sm bg-black font-serif font-bold text-gray-400 ">Active</button>
-                        <button onClick={() => handleFilter("Inactive")} class="btn btn-sm bg-black font-serif font-bold text-gray-400 ml-2">Inactive</button>
+                        <div className='flex '>
+                            <button onClick={() => handleFilter("active")} class="btn btn-sm bg-black font-serif font-bold text-gray-400 ">Active</button>
+                            <button onClick={() => handleFilter("Inactive")} class="btn btn-sm bg-black font-serif font-bold text-gray-400 ml-2">Inactive</button>
                         </div>
                     </div>
                 </section>
