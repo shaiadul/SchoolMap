@@ -2,53 +2,56 @@ import axios from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import StudentTr from './StudentTr';
+import EmployTr from './EmployTr';
 import search from "../../images/search-svgrepo-com.svg"
 import refresh from "../../images/refresh-svgrepo-com.svg"
 
 
 const AllStudents = () => {
-
     // get value
-    const [students, setStudents] = useState([]);
+    const [employs, setEmploys] = useState([]);
     const [value, setValue] = useState(" ");
     const [sortValue, setSortValue] = useState(" ");
 
-    const sortOptions = ["name", "phone", "status", "roll","group"]
+    const sortOptions = ["name", "phone", "status", "role", "group"]
+
     // get students data
     useEffect(() => {
         loadStudentData();
     }, [])
     const loadStudentData = async () => {
-        return await axios.get("http://localhost:5000/user").then((res) => setStudents(res.data)).catch((err) => console.log(err))
+        return await axios.get("https://fake-server-schoolmap.herokuapp.com/user").then((res) => setEmploys(res.data)).catch((err) => console.log(err))
     }
+
     // handleReset
     const handleReset = () => {
         loadStudentData();
     }
+
     // handleSearch
     const handleSearch = async (e) => {
         e.preventDefault();
-        return await axios.get(`http://localhost:5000/user?q=${value}`).then((res) => {
-            setStudents(res.data);
+        return await axios.get(`https://fake-server-schoolmap.herokuapp.com/user?q=${value}`).then((res) => {
+            setEmploys(res.data);
             setValue("");
         }).catch((err) => console.log(err))
     }
+
     // handleSort
     const handleSort = async (e) => {
         let value = e.target.value;
         setSortValue(value);
-        return await axios.get(`http://localhost:5000/user?_sort=${value}&_order=asc`).then((res) => {
-            setStudents(res.data);
-        }).catch((err) => console.log(err))
-    }
-    // handleFilter
-    const handleFilter = async (value) => {
-        return await axios.get(`http://localhost:5000/user?status=${value}`).then((res) => {
-            setStudents(res.data);
+        return await axios.get(`https://fake-server-schoolmap.herokuapp.com/user?_sort=${value}&_order=asc`).then((res) => {
+            setEmploys(res.data);
         }).catch((err) => console.log(err))
     }
 
+    // handleFilter
+    const handleFilter = async (value) => {
+        return await axios.get(`https://fake-server-schoolmap.herokuapp.com/user?status=${value}`).then((res) => {
+            setEmploys(res.data);
+        }).catch((err) => console.log(err))
+    }
     return (
         <div className='px-2 pb-40 bg-gray-300'>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -92,10 +95,10 @@ const AllStudents = () => {
                                 S.N
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Student Name
+                                Employ Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Roll
+                                Role
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Group
@@ -111,23 +114,20 @@ const AllStudents = () => {
                     {/* table information */}
                     <tbody>
                         {
-                            students.map((student, index) =>
-                                <StudentTr
-                                    key={student.id}
-                                    student={student}
+                            employs.map((employ, index) =>
+                                <EmployTr
+                                    key={employ.id}
+                                    employ={employ}
                                     index={index}
-                                ></StudentTr>
+                                ></EmployTr>
                             )}
                     </tbody>
                 </table>
-                {/* show all data in the table end*/}  
+                {/* show all data in the table end*/}
 
-                {/* pagination start */}
-
-                {/* pagination end */}
 
                 {/* dropdown and filter section start*/}
-                <section className='my-11 grid grid-cols-2'>
+                <section className='my-11 grid grid-cols-2 justify-center'>
                     {/* short part */}
                     <div>
                         <h4 className='text-primary font-extrabold font-serif text-xl'>Sort By:</h4>
@@ -144,10 +144,12 @@ const AllStudents = () => {
                         </select>
                     </div>
                     {/* filter Part */}
-                    <div>
-                    <h4 className='text-primary font-extrabold font-serif text-xl'>Filter By Status:</h4>
-                    <button onClick={() => handleFilter("active")} class="btn btn-sm bg-black font-serif font-bold ">Active</button>
-                    <button onClick={() => handleFilter("Inactive")} class="btn btn-sm bg-black font-serif font-bold ml-2">Inactive</button>
+                    <div className=''>
+                        <h4 className='text-primary font-extrabold font-serif text-xl'>Filter By Status:</h4>
+                        <div className='flex'>
+                        <button onClick={() => handleFilter("active")} class="btn btn-sm bg-black font-serif font-bold text-gray-400 ">Active</button>
+                        <button onClick={() => handleFilter("Inactive")} class="btn btn-sm bg-black font-serif font-bold text-gray-400 ml-2">Inactive</button>
+                        </div>
                     </div>
                 </section>
                 {/* dropdown and filter section end*/}

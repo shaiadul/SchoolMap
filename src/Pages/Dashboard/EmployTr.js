@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const StudentTr = ({ student, index, refetch }) => {
+const StudentTr = ({ employ, index, refetch }) => {
 
 // ----------------------------
    
@@ -11,19 +11,19 @@ const StudentTr = ({ student, index, refetch }) => {
                 {index + 1}
             </td>
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap uppercase">
-                {student.name}
+                {employ.name}
             </th>
             <td class="px-6 py-4">
-                {student.roll}
+                {employ.role}
             </td>
             <td class="px-6 py-4">
-                {student.group}
+                {employ.group}
             </td>
             <td class="px-6 py-4">
-                {student.phone}
+                {employ.phone}
             </td>
             <td class="px-6 py-4">
-                <button className='btn btn-xs btn-outline btn-primary'>{student.status}</button>
+                <button className='btn btn-xs btn-outline btn-primary'>{employ.status}</button>
             </td>
             
         </tr>

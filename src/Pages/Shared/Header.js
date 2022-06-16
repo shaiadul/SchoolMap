@@ -3,13 +3,15 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 import loginIcon from '../../images/login.png'
 import SignupIcon from '../../images/signup.png'
 import './Header.css'
 
 const Header = () => {
     const [user] = useAuthState(auth);
-    // console.log(user);
+    const [admin] = useAdmin(user);
+    // console.log(admin);
 
     // logout
     const logout = () => {
@@ -28,7 +30,7 @@ const Header = () => {
 
                             <li><Link to='home'>HOME</Link></li>
                             {
-                                user &&
+                                admin &&
                                 <li><Link to='dashboard'>DASHBOARD</Link></li>
 
                             }
@@ -59,7 +61,7 @@ const Header = () => {
 
                     <li><NavLink activeClassName='active-link' to='home' className='font-serif hover:bg-primary duration-700 hover:text-white px-2 rounded '>HOME</NavLink></li>
                     {
-                        user &&
+                        admin &&
                         <li><Link to='dashboard' className='font-serif hover:bg-primary duration-700 hover:text-white px-2 rounded '>DASHBOARD</Link></li>
                     }
 

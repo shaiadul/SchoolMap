@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import AllStudents from './Pages/Dashboard/AllStudents';
+import AllEmploy from './Pages/Dashboard/AllEmploy';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Record from './Pages/Dashboard/Record';
 import Home from './Pages/Home/Home';
@@ -21,8 +21,7 @@ function App() {
         {/* nested route */}
         <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
           <Route index element={<Record/>}></Route>
-          <Route path="allStudents" element={<AllStudents/> }></Route>
-          {/* <Route path="addStudent" element={<AddStudent/> }></Route> */}
+          <Route path="allEmploy" element={<AllEmploy/> }></Route>
         </Route>
 
         {/* login section */}

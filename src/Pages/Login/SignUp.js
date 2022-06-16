@@ -26,17 +26,17 @@ const SignUp = () => {
     let signInError;
 
     if (loading || gLoading || updating) {
-        return <Loading/>
+        return <Loading />
     }
 
     if (error || gError || updateError) {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message || updateError?.message}</small></p>
     }
-
+    // verify user
     if (token) {
         navigate('/home');
     }
-
+    // function onSubmit start
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
