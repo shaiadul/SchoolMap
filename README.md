@@ -29,6 +29,6 @@
   * Rechart
   * React Sweet Alart
  
-  ## Heploy and Hosting::100:
+  ## deploy and Hosting::100:
   * Firebase( Client Site )
   * Heroku ( Server and db.json )
