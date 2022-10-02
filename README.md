@@ -34,4 +34,4 @@
  
   ## Deploy and Hosting::100:
   * Firebase( Client Site )
-  * Heroku ( Server and db.json )
+  * Heroku ( Server and db.json ).
