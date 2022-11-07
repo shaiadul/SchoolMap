@@ -14,7 +14,7 @@
   * Only Admin see Dashboard.
   * Employ Rout (Employer list with search, filter, and sort).
 
-  ## Technology I use for this project:-:sweat_drops:
+  ## Technology I use for this project:-:sweat_drops:-
   * React
   * Express
   * Mongodb
