@@ -26,7 +26,7 @@
 
   ## Npm and tools uses::thought_balloon:
   * React From Hook
-  * React Counter
+  * React Counter,
   * React Firebase Hook
   * SVG
   * Rechart
