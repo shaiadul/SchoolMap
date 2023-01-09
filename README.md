@@ -18,7 +18,7 @@
   * React
   * Express
   * Mongodb
-  * JavaScript
+  * JavaScript,
   * db.json
   * Tailwind ( DasyUI )
   * Nasted Route
